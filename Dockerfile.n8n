@@ -32,20 +32,48 @@ RUN apt-get update && apt-get install -y \
 # Install npm packages globally
 RUN npm install -g \
     axios \
+    async \
+    safer-buffer \
+    easy-template-x \
+    @xmldom/xmldom \
+    jsonata \
+    iconv-lite \
+    lodash.get \
+    jszip \
+    json5 \
+    tmp \
     moment \
     lodash \
     carbone \
     jspdf \
     pdfkit \
     jspdf-autotable \
-    pdf-lib
+    @types/node \
+    pdfjs-dist \
+    tempy \
+    ajv \
+    ajv-formats \
+    libreoffice-convert \
+    entities \
+    pdf-lib \
+    string-strip-html
 
 # Set the working directory
 WORKDIR /home/node/.n8n
 
 # Install the custom nodes
-RUN npm install n8n-nodes-python
-
+RUN npm install n8n-nodes-python  \
+    n8n-nodes-carbonejs \
+    @cdmx/n8n-nodes-input-validator \
+    @flagbit/n8n-nodes-data-validation \
+    n8n-nodes-data-validation \
+    n8n-nodes-generate-report-2 \
+    n8n-nodes-jsonata \
+    n8n-python-hari2 \
+    n8n-nodes-readpdfform \
+    n8n-nodes-writepdfform \
+    n8n-nodes-text-manipulation    
+    
 # Set permissions for custom nodes, data directory, and logs directory
 RUN mkdir -p /data /home/node/logs && \
     chown -R node:node /home/node/.n8n /data /home/node/logs
