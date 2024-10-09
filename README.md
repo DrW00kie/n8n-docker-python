@@ -1,4 +1,4 @@
-# n8n-docker-caddy (Python Customized Version)
+# n8n-docker-caddy (Customized Version)
 
 This repository provides a customized setup for running **n8n** using Docker and Caddy, based on the original `n8n-docker-caddy` repository. The following documentation explains the changes made to adapt the environment, including additional packages, dependencies, and modifications to make it more versatile.
 
@@ -99,6 +99,10 @@ The following community nodes have been added to extend n8n functionality:
 * Added a new volume for **downloaded files** (`/files/downloads`) to ensure persistent storage of downloaded assets such as PDFs.
 * Defined a **custom network** (`n8n_network`) to allow seamless communication between the `caddy` and `n8n` services.
 * Set environment variables to control the behavior of n8n and enable additional features (e.g., allowing built-in modules and external packages).
+* Added volumes for **persistent storage**:
+  - **`caddy_data`**: Stores Caddy data such as SSL certificates.
+  - **`n8n_data`**: Stores n8n configuration and workflow data.
+  - **`n8n_downloads`**: Stores downloaded files for later access.
 
 ### Changes to Environment Variables
 * **`NODE_FUNCTION_ALLOW_EXTERNAL=true`**: Enables the use of external npm packages in function nodes.
@@ -112,7 +116,17 @@ For more details on installation, refer to the [DigitalOcean tutorial](https://d
 
 1. **Create a Droplet**: Create a new droplet with sufficient resources (2GB RAM recommended for basic usage).
 2. **Install Docker**: Set up Docker by running the installation script provided by Docker.
-3. **Clone the Repository**: Clone this customized repository (`n8n-docker-caddy-python`) to get started.
+3. **Clone the Repository**: Clone this customized repository (`n8n-docker-caddy`) to get started.
 4. **Update Environment Variables**: Edit the `.env` file to configure domain, subdomain, and other settings.
 5. **Run Docker Compose**: Use `docker-compose up -d` to start the Caddy and n8n services.
 6. **Access n8n**: Once setup is complete, access n8n at `https://<subdomain>.<domain>`.
+
+## Version History
+
+### Version 1.0.0
+* Initial customized setup based on `n8n-docker-caddy` repository.
+* Installed additional software and packages, including Python 3, various Python dependencies, and global npm packages.
+* Added several custom n8n nodes to enhance workflow capabilities.
+* Set up Docker volumes for persistent storage of configuration, data, and downloaded files.
+* Running as `root` user initially, with plans to migrate to a non-root user once the setup is running smoothly.
+* Likely redundent packages at install, I need to research the core n8n packages installed
