@@ -26,7 +26,11 @@ RUN set -eux; \
     npm cache clean --force && \
     rm -rf /root/.npm
 
+# Copy the entrypoint script to the container
 COPY docker-entrypoint.sh /
+
+# Make sure the entrypoint script is executable
+RUN chmod +x /docker-entrypoint.sh
 
 # Install fonts and dependencies
 RUN apk --no-cache add --virtual fonts msttcorefonts-installer fontconfig && \
