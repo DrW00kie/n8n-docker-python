@@ -11,10 +11,12 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     build-essential \
     curl \
+    graphicsmagick \
     p7zip-full && \
     pip3 install --no-cache-dir \
     requests \
     pandas \
+    fire \
     numpy \
     beautifulsoup4 \
     lxml \
@@ -25,8 +27,7 @@ RUN apt-get update && apt-get install -y \
     reportlab \
     python-docx \
     zipfile36 \
-    pendulum \
-    && \
+    pendulum && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
     
 # Install npm packages globally
@@ -50,6 +51,7 @@ RUN npm install -g \
     jspdf-autotable \
     @types/node \
     pdfjs-dist \
+    JMESPath \
     tempy \
     ajv \
     ajv-formats \
@@ -58,11 +60,15 @@ RUN npm install -g \
     pdf-lib \
     string-strip-html
 
-# Set the working directory
+# Create nodes directory for custom nodes
+RUN mkdir -p /home/node/.n8n/nodes
+
+# Set the working directory for installing custom nodes
 WORKDIR /home/node/.n8n
 
 # Install the custom nodes
-RUN npm install n8n-nodes-python  \
+RUN npm install \
+    n8n-nodes-python  \
     n8n-nodes-carbonejs \
     @cdmx/n8n-nodes-input-validator \
     @flagbit/n8n-nodes-data-validation \
