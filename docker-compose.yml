@@ -1,4 +1,4 @@
-version: "3.7"
+version: "3.9"
 
 services:
   caddy:
@@ -11,9 +11,12 @@ services:
       - caddy_data:/data
       - ${DATA_FOLDER}/caddy_config:/config
       - ${DATA_FOLDER}/caddy_config/Caddyfile:/etc/caddy/Caddyfile
+    networks:
+      - n8n_network
 
   n8n:
-    image: docker.n8n.io/n8nio/n8n
+    # Use your custom n8n image that includes Python and npm packages
+    image: n8n-docker-caddy-python:latest
     restart: always
     ports:
       - 5678:5678
@@ -24,12 +27,24 @@ services:
       - NODE_ENV=production
       - WEBHOOK_URL=https://${SUBDOMAIN}.${DOMAIN_NAME}/
       - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
+      - EXECUTIONS_MODE=regular
+      - N8N_LOG_LEVEL=info
     volumes:
       - n8n_data:/home/node/.n8n
       - ${DATA_FOLDER}/local_files:/files
-      
+      - /home/node/logs:/home/node/logs
+      - n8n_downloads:/files/downloads
+    networks:
+      - n8n_network
+
 volumes:
   caddy_data:
     external: true
   n8n_data:
     external: true
+  n8n_downloads:
+    external: true
+
+networks:
+  n8n_network:
+    driver: bridge
