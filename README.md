@@ -1,4 +1,4 @@
-# n8n-docker-caddy (Customized Version)
+# n8n-docker-caddy (Python Customized Version)
 
 This repository provides a customized setup for running **n8n** using Docker and Caddy, based on the original `n8n-docker-caddy` repository. The following documentation explains the changes made to adapt the environment, including additional packages, dependencies, and modifications to make it more versatile.
 
@@ -112,7 +112,7 @@ For more details on installation, refer to the [DigitalOcean tutorial](https://d
 
 1. **Create a Droplet**: Create a new droplet with sufficient resources (2GB RAM recommended for basic usage).
 2. **Install Docker**: Set up Docker by running the installation script provided by Docker.
-3. **Clone the Repository**: Clone this customized repository (`n8n-docker-caddy`) to get started.
+3. **Clone the Repository**: Clone this customized repository (`n8n-docker-caddy-python`) to get started.
 4. **Update Environment Variables**: Edit the `.env` file to configure domain, subdomain, and other settings.
 5. **Run Docker Compose**: Use `docker-compose up -d` to start the Caddy and n8n services.
 6. **Access n8n**: Once setup is complete, access n8n at `https://<subdomain>.<domain>`.
