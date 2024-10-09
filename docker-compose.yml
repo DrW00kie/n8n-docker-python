@@ -1,4 +1,4 @@
-version: "3.9"
+#version: "3.9"
 
 services:
   caddy:
@@ -16,7 +16,7 @@ services:
 
   n8n:
     # Use your custom n8n image that includes Python and npm packages
-    image: n8n-docker-caddy-python:latest
+    image: n8n-docker-caddy-python
     restart: always
     ports:
       - 5678:5678
