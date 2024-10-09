@@ -16,7 +16,7 @@ services:
 
   n8n:
     # Use your custom n8n image that includes Python and npm packages
-    image: n8n-docker-caddy-python
+    image: n8n-docker-python
     restart: always
     ports:
       - 5678:5678
