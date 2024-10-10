@@ -1,7 +1,9 @@
 # Use the official n8n base image with the specified Node version
 ARG NODE_VERSION=20
-ARG N8N_VERSION=latest
+
 FROM n8nio/base:${NODE_VERSION}
+
+ARG N8N_VERSION=latest
 
 RUN if [ -z "$N8N_VERSION" ]; then echo "The N8N_VERSION argument is missing!"; exit 1; fi
 
