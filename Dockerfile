@@ -80,7 +80,7 @@ RUN npm install -g \
     jspdf-autotable \
     @types/node \
     pdfjs-dist \
-    JMESPath \
+    jmespath \
     tempy \
     ajv \
     ajv-formats \
