@@ -106,7 +106,8 @@ RUN npm install \
     n8n-python-hari2 \
     n8n-nodes-readpdfform \
     n8n-nodes-writepdfform \
-    n8n-nodes-text-manipulation
+    n8n-nodes-text-manipulation && \
+    chown -R node:node /home/node/.n8n/node_modules
 
 # Set permissions for custom nodes, data directory, and logs directory
 RUN mkdir -p /data /home/node/logs && \
