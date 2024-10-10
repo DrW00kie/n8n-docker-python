@@ -33,10 +33,10 @@ services:
     volumes:
       - n8n_data:/home/node/.n8n
       - ${DATA_FOLDER}/local_files:/files
-      - /home/node/logs:/home/node/logs
-      - n8n_downloads:/files/downloads
-      - ./python_scripts:/data/py_scripts
-      - ./requirements.txt:/data/requirements.txt
+#      - /home/node/logs:/home/node/logs
+#      - n8n_downloads:/files/downloads
+#      - ./python_scripts:/data/py_scripts
+#      - ./requirements.txt:/data/requirements.txt
     networks:
       - n8n_network
 
