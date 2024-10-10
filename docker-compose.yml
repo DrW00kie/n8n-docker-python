@@ -9,8 +9,7 @@ services:
       - "443:443"
     volumes:
       - caddy_data:/data
-      - ${DATA_FOLDER}/caddy_config:/config
-      - ${DATA_FOLDER}/caddy_config/Caddyfile:/etc/caddy/Caddyfile
+      - ${DATA_FOLDER}/caddy_config:/etc/caddy
     networks:
       - n8n_network
 
