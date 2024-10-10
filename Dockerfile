@@ -31,6 +31,12 @@ RUN set -eux; \
 # Copy the entrypoint script to the container
 COPY docker-entrypoint.sh /
 
+RUN \
+	mkdir .n8n && \
+	chown node:node .n8n
+
+ENV SHELL /bin/sh
+
 # Make sure the entrypoint script is executable
 RUN chmod +x /docker-entrypoint.sh
 
