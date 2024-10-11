@@ -95,7 +95,7 @@ ENV SHELL /bin/sh
 ENTRYPOINT ["tini", "--", "/docker-entrypoint.sh"]
 
 # Install the custom nodes
-RUN mkdir /.n8n/nodes
+#RUN mkdir /.n8n/nodes
 WORKDIR /.n8n/nodes
 RUN npm install \
     n8n-nodes-python \
