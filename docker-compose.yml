@@ -45,8 +45,8 @@ volumes:
     external: true
   n8n_data:
     external: true
-  n8n_downloads:
-    external: true
+# n8n_downloads:
+#   external: true
 
 networks:
   n8n_network:
