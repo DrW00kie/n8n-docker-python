@@ -5,7 +5,7 @@ FROM n8nio/n8n:${VERSION}
 USER root
 
 # Install Python
-RUN apk add --no-cache \
+RUN apk add \
     gcc \
     python3 \
     python3-dev \
