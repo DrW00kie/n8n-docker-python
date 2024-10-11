@@ -17,7 +17,6 @@ LABEL org.opencontainers.image.version=${N8N_VERSION}
 ENV N8N_VERSION=${N8N_VERSION}
 ENV NODE_ENV=production
 ENV N8N_RELEASE_TYPE=stable
-
 RUN set -eux; \
     npm install -g --omit=dev n8n@${N8N_VERSION} --ignore-scripts && \
     npm rebuild --prefix=/usr/local/lib/node_modules/n8n sqlite3 && \
@@ -29,13 +28,13 @@ RUN set -eux; \
     rm -rf /root/.npm
 
 # Install fonts and dependencies
-RUN apk --no-cache add --virtual fonts msttcorefonts-installer fontconfig && \
-    update-ms-fonts && \
-    fc-cache -f && \
-    apk del fonts && \
-    find /usr/share/fonts/truetype/msttcorefonts/ -type l -exec unlink {} \;
+#RUN apk --no-cache add --virtual fonts msttcorefonts-installer fontconfig && \
+#    update-ms-fonts && \
+#    fc-cache -f && \
+#    apk del fonts && \
+#    find /usr/share/fonts/truetype/msttcorefonts/ -type l -exec unlink {} \;
 
-# Install OS dependencies including Python and pip
+# Install Python and packages
 RUN apk add --no-cache \
     git \
     openssh \
@@ -87,8 +86,17 @@ RUN npm install -g \
 # Create directory for custom nodes
 #RUN mkdir -p /home/node/.n8n/nodes
 
+# Copy the entrypoint script to the container
+COPY docker-entrypoint.sh /
+RUN \
+	mkdir .n8n && \
+	chown node:node .n8n
+ENV SHELL /bin/sh
+ENTRYPOINT ["tini", "--", "/docker-entrypoint.sh"]
+
 # Install the custom nodes
-WORKDIR /home/node/.n8n
+RUN mkdir /.n8n/nodes
+WORKDIR /.n8n/nodes
 RUN npm install \
     n8n-nodes-python \
     n8n-nodes-carbonejs \
@@ -100,13 +108,4 @@ RUN npm install \
     n8n-python-hari2 \
     n8n-nodes-readpdfform \
     n8n-nodes-writepdfform \
-    n8n-nodes-text-manipulation && \
-    chown -R node:node /home/node/.n8n/node_modules
-
-# Copy the entrypoint script to the container
-COPY docker-entrypoint.sh /
-RUN \
-	mkdir .n8n && \
-	chown node:node .n8n
-ENV SHELL /bin/sh
-ENTRYPOINT ["tini", "--", "/docker-entrypoint.sh"]
+    n8n-nodes-text-manipulation
