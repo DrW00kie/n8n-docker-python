@@ -66,8 +66,8 @@ RUN npm install -g \
     libreoffice-convert \
     entities \
     pdf-lib \
-    string-strip-html && \
-    npm cache clean --force
+    string-strip-html
+#   npm cache clean --force
 
 # Create directory for custom nodes
 #RUN mkdir -p /home/node/.n8n/nodes
