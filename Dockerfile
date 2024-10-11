@@ -53,3 +53,18 @@ RUN npm install -g \
     npm cache clean --force
 
 USER node
+
+# Install the custom nodes
+WORKDIR ~/.n8n/nodes
+RUN npm install \
+    n8n-nodes-python \
+    n8n-nodes-carbonejs \
+    @cdmx/n8n-nodes-input-validator \
+    @flagbit/n8n-nodes-data-validation \
+    n8n-nodes-data-validation \
+    n8n-nodes-generate-report-2 \
+    n8n-nodes-jsonata \
+    n8n-python-hari2 \
+    n8n-nodes-readpdfform \
+    n8n-nodes-writepdfform \
+    n8n-nodes-text-manipulation
