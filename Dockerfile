@@ -19,7 +19,8 @@ RUN apk add \
     libc6-compat \
     jq \
     build-base \
-    curl
+    curl && \
+    rm -rf /var/cache/apk/*
 
 # Install npm packages globally
 RUN npm install -g \
