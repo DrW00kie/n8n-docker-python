@@ -55,7 +55,7 @@ RUN npm install -g \
 USER node
 
 # Install the custom nodes
-WORKDIR ~/.n8n/nodes
+WORKDIR /.n8n/nodes
 RUN npm install \
     n8n-nodes-python \
     n8n-nodes-carbonejs \
