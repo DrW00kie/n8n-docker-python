@@ -36,20 +36,20 @@ RUN set -eux; \
 
 # Install Python and packages
 RUN apk add --no-cache \
-    git \
-    openssh \
-    graphicsmagick \
-    tini \
-    tzdata \
-    ca-certificates \
-    libc6-compat \
-    jq \
-    build-base \
-    curl \
-    p7zip \
+#    git \
+#    openssh \
+#    graphicsmagick \
+#    tini \
+#    tzdata \
+#    ca-certificates \
+#    libc6-compat \
+#    jq \
+#    build-base \
+#    curl \
     python3 \
     python3-dev \
-    py3-pip && \
+    py3-pip 
+    p7zip && \
     rm -rf /var/cache/apk/*
 
 # Install npm packages globally
