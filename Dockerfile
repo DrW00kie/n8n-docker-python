@@ -34,7 +34,7 @@ RUN set -eux; \
 #    apk del fonts && \
 #    find /usr/share/fonts/truetype/msttcorefonts/ -type l -exec unlink {} \;
 
-# Install Python and packages
+# Install Python
 RUN apk add --no-cache \
 #    git \
 #    openssh \
@@ -51,6 +51,22 @@ RUN apk add --no-cache \
     py3-pip 
     p7zip && \
     rm -rf /var/cache/apk/*
+
+# Install Python packages globally
+RUN pip3 install --no-cache-dir \
+    requests \
+    pandas \
+    numpy \
+    beautifulsoup4 \
+    lxml \
+    pyyaml \
+    pydf \
+    PyPDF2 \
+    pdfplumber \
+    reportlab \
+    python-docx \
+    zipfile36 \
+    pendulum
 
 # Install npm packages globally
 RUN npm install -g \
@@ -96,16 +112,16 @@ ENTRYPOINT ["tini", "--", "/docker-entrypoint.sh"]
 
 # Install the custom nodes
 #RUN mkdir /.n8n/nodes
-WORKDIR /.n8n/nodes
-RUN npm install \
-    n8n-nodes-python \
-    n8n-nodes-carbonejs \
-    @cdmx/n8n-nodes-input-validator \
-    @flagbit/n8n-nodes-data-validation \
-    n8n-nodes-data-validation \
-    n8n-nodes-generate-report-2 \
-    n8n-nodes-jsonata \
-    n8n-python-hari2 \
-    n8n-nodes-readpdfform \
-    n8n-nodes-writepdfform \
-    n8n-nodes-text-manipulation
+#WORKDIR /.n8n/nodes
+#RUN npm install \
+#    n8n-nodes-python \
+#    n8n-nodes-carbonejs \
+#    @cdmx/n8n-nodes-input-validator \
+#    @flagbit/n8n-nodes-data-validation \
+#    n8n-nodes-data-validation \
+#    n8n-nodes-generate-report-2 \
+#    n8n-nodes-jsonata \
+#    n8n-python-hari2 \
+#    n8n-nodes-readpdfform \
+#    n8n-nodes-writepdfform \
+#    n8n-nodes-text-manipulation
