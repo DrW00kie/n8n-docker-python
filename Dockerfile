@@ -21,23 +21,6 @@ RUN apk add --no-cache \
     build-base \
     curl \
 
-# RUN python3 -m pip install --upgrade pip
-# Install Python packages globally
-# RUN python3 -m pip install \
-#    requests \
-#    pandas \
-#    numpy \
-#    beautifulsoup4 \
-#    lxml \
-#    pyyaml \
-#    pydf \
-#    PyPDF2 \
-#    pdfplumber \
-#    reportlab \
-#    python-docx \
-#    zipfile36 \
-#    pendulum
-
 # Install npm packages globally
 RUN npm install -g \
     axios \
@@ -67,18 +50,4 @@ RUN npm install -g \
     entities \
     pdf-lib
 
-#   string-strip-html
-
-#   npm cache clean --force
-
-# Create directory for custom nodes
-#RUN mkdir -p /home/node/.n8n/nodes
-
-# Copy the entrypoint script to the container
-# COPY docker-entrypoint.sh /
-# RUN \
-#	mkdir .n8n && \
-#	chown node:node .n8n
-#ENV SHELL /bin/sh
-#ENTRYPOINT ["tini", "--", "/docker-entrypoint.sh"]
 USER node
