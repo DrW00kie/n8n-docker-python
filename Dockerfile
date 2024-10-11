@@ -65,8 +65,10 @@ RUN npm install -g \
     ajv-formats \
     libreoffice-convert \
     entities \
-    pdf-lib \
-    string-strip-html
+    pdf-lib
+
+#   string-strip-html
+
 #   npm cache clean --force
 
 # Create directory for custom nodes
