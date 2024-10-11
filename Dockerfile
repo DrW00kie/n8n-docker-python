@@ -36,10 +36,10 @@ RUN set -eux; \
 
 # Install Python
 RUN apk add --no-cache \
+    gcc \
     python3 \
     python3-dev \
-    py3-pip 
-    p7zip && \
+    py3-pip && \
     rm -rf /var/cache/apk/*
 #    git \
 #    openssh \
@@ -51,6 +51,7 @@ RUN apk add --no-cache \
 #    jq \
 #    build-base \
 #    curl \
+#    py7zip
 RUN python3 -m pip install --upgrade pip
 # Install Python packages globally
 RUN python3 -m pip install \
