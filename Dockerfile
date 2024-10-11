@@ -28,18 +28,6 @@ RUN set -eux; \
     npm cache clean --force && \
     rm -rf /root/.npm
 
-# Copy the entrypoint script to the container
-COPY docker-entrypoint.sh /
-
-RUN \
-	mkdir .n8n && \
-	chown node:node .n8n
-
-ENV SHELL /bin/sh
-
-# Make sure the entrypoint script is executable
-RUN chmod +x /docker-entrypoint.sh
-
 # Install fonts and dependencies
 RUN apk --no-cache add --virtual fonts msttcorefonts-installer fontconfig && \
     update-ms-fonts && \
@@ -97,7 +85,7 @@ RUN npm install -g \
     npm cache clean --force
 
 # Create directory for custom nodes
-RUN mkdir -p /home/node/.n8n/nodes
+#RUN mkdir -p /home/node/.n8n/nodes
 
 # Install the custom nodes
 WORKDIR /home/node/.n8n
@@ -115,14 +103,10 @@ RUN npm install \
     n8n-nodes-text-manipulation && \
     chown -R node:node /home/node/.n8n/node_modules
 
-# Set permissions for custom nodes, data directory, and logs directory
-RUN mkdir -p /data /home/node/logs && \
-    chown -R node:node /home/node/.n8n /data /home/node/logs
-
-# Switch back to node user to run n8n
-USER node
-
+# Copy the entrypoint script to the container
+COPY docker-entrypoint.sh /
+RUN \
+	mkdir .n8n && \
+	chown node:node .n8n
+ENV SHELL /bin/sh
 ENTRYPOINT ["tini", "--", "/docker-entrypoint.sh"]
-
-# Default work directory
-WORKDIR /data
