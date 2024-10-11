@@ -5,7 +5,7 @@ FROM n8nio/n8n:${VERSION}
 USER root
 
 # Install Python
-RUN apk add --update \
+RUN apk add --no-cache \
     gcc \
     python3 \
     python3-dev \
@@ -21,9 +21,9 @@ RUN apk add --update \
     build-base \
     curl \
 
-RUN python3 -m pip install --upgrade pip
+# RUN python3 -m pip install --upgrade pip
 # Install Python packages globally
-#RUN python3 -m pip install \
+# RUN python3 -m pip install \
 #    requests \
 #    pandas \
 #    numpy \
