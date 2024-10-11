@@ -51,9 +51,9 @@ RUN apk add --no-cache \
 #    jq \
 #    build-base \
 #    curl \
-
+RUN python3 -m pip install --upgrade pip
 # Install Python packages globally
-RUN pip3 install --no-cache-dir \
+RUN python3 -m pip install \
     requests \
     pandas \
     numpy \
