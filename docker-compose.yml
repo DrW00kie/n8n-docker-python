@@ -28,8 +28,6 @@ services:
       - WEBHOOK_URL=https://${SUBDOMAIN}.${DOMAIN_NAME}/
       - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
       - EXECUTIONS_MODE=regular
-      - N8N_LOG_LEVEL=info
-      - N8N_INSTALL_CUSTOM_NODES=true
     volumes:
       - n8n_data:/home/node/.n8n
       - ${DATA_FOLDER}/local_files:/files
