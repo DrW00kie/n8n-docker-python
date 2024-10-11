@@ -49,6 +49,7 @@ RUN npm install -g \
     ajv-formats \
     libreoffice-convert \
     entities \
-    pdf-lib
+    pdf-lib && \
+    npm cache clean --force
 
 USER node
