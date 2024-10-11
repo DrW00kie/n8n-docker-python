@@ -39,8 +39,10 @@ RUN apk add --no-cache \
     python3 \
     python3-dev \
     py3-pip 
-    p7zip && \
-    rm -rf /var/cache/apk/*
+
+    
+#    p7zip && \
+#    rm -rf /var/cache/apk/*
 
 #    git \
 #    openssh \
