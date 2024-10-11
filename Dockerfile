@@ -9,7 +9,7 @@ RUN apk add \
     gcc \
     python3 \
     python3-dev \
-    py3-pip && \
+    py3-pip \
     git \
     openssh \
     graphicsmagick \
