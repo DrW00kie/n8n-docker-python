@@ -1,15 +1,19 @@
 FROM docker.n8n.io/n8nio/n8n
 USER ROOT
 
+
+RUN apk add --update gcc python3 py3-pip build-base python3-dev curl jq
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install requests pandas sqlalchemy psycopg2-binary
 # Install Python
-RUN apk add --no-cache \
-    gcc
-    python3 \
-    python3-dev \
-    py3-pip \
-    build-base \
-    curl \
-    jq
+#RUN apk add --no-cache \
+#    gcc
+#    python3 \
+#    python3-dev \
+#    py3-pip \
+#    build-base \
+#    curl \
+#    jq
 
     
 #    p7zip && \
@@ -27,20 +31,20 @@ RUN apk add --no-cache \
 #    curl \
 
 # Install Python packages globally
-RUN pip3 install --no-cache-dir \
-    requests \
-    pandas \
-    numpy \
-    beautifulsoup4 \
-    lxml \
-    pyyaml \
-    pydf \
-    PyPDF2 \
-    pdfplumber \
-    reportlab \
-    python-docx \
-    zipfile36 \
-    pendulum
+#RUN pip3 install --no-cache-dir \
+#    requests \
+#    pandas \
+#    numpy \
+#   beautifulsoup4 \
+#    lxml \
+#    pyyaml \
+#    pydf \
+#    PyPDF2 \
+#    pdfplumber \
+#    reportlab \
+#    python-docx \
+#    zipfile36 \
+#    pendulum
 
 # Install npm packages globally
 RUN npm install -g \
